@@ -44,7 +44,7 @@ class logisticUsecase {
     return result;
   }
 
-  async getById(id) {
+  async getLogisticById(id) {
     let result = {
       isSuccess: false,
       statusCode: null,
@@ -52,7 +52,7 @@ class logisticUsecase {
       data: null,
     };
 
-    const logistic = await this._logisticRepository.getById(id);
+    const logistic = await this._logisticRepository.getLogisticById(id);
 
     if (logistic === null) {
       result.statusCode = 404;

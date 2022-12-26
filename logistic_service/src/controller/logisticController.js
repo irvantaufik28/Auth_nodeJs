@@ -35,11 +35,11 @@ module.exports = {
     }
   },
 
-  getById: async (req, res, next) => {
+  getLogisticById: async (req, res, next) => {
     try {
       const { id } = req.params;
 
-      const result = await req.logisticUC.getById(id);
+      const result = await req.logisticUC.getLogisticById(id);
 
       if (!result.isSuccess) {
         return res
@@ -71,7 +71,7 @@ module.exports = {
     }
   },
 
-  updateCategory: async (req, res, next) => {
+  updateLogistic: async (req, res, next) => {
     try {
       const { id } = req.params;
 
@@ -83,7 +83,7 @@ module.exports = {
         duration: req.body.duration,
       };
 
-      const result = await req.logisticUC.updateCategory(id, logistic);
+      const result = await req.logisticUC.updateLogistic(id, logistic);
 
       if (!result.isSuccess) {
         return res
