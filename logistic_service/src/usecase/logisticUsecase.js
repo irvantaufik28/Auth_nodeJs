@@ -52,7 +52,7 @@ class logisticUsecase {
       data: null,
     };
 
-    const logistic = await this._logisticRepository.getLogisticById(id);
+    const logistic = await this._logisticRepository.getById(id);
 
     if (logistic === null) {
       result.statusCode = 404;
