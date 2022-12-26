@@ -11,11 +11,19 @@ class logisticUsecase {
       data: null,
     };
 
+    const strLogisticData = {
+      logistic_name: logisticData.logistic_name,
+      destination_name: logisticData.logistic_name,
+      origin_name: logisticData.origin_name,
+    };
     let upperCased_logisticData = {};
 
-    for (let key in logisticData) {
-      upperCased[key] = logisticData[key].toUpperCase();
+    for (let key in strLogisticData) {
+      upperCased_logisticData[key] = strLogisticData[key].toUpperCase();
     }
+    upperCased_logisticData.amount = logisticData.amount;
+    upperCased_logisticData.duration = logisticData.duration;
+
     const logistic = await this._logisticRepository.create(
       upperCased_logisticData
     );
