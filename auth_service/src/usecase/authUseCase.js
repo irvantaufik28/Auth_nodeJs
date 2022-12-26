@@ -29,7 +29,7 @@ class AuthUseCase {
             return result;
         }
 
-        userData.password = this.bcrypt.hashSync(userData.password, 10);
+        userData.password = this._bcrypt.hashSync(userData.password, 10);
         let userRegister = await this._userRepository.createUser(userData);
 
         result.isSuccess = true;
@@ -39,20 +39,21 @@ class AuthUseCase {
       }
 
 
-      async login(userdata) {
+      async login(userData) {
         let result = {
           isSuccess: false,
           statusCode: 404,
           reason: null,
           data: null,
+          token : null,
         };
-        const user = await this._authRepository.getUserByUsernameOrMsisdn(user.usernameOrMsisdn);
+        const user = await this._userRepository.getUserByUsernameOrMsisdn(userData.username_or_msisdn);
         if (user === null) {
           result.reason = 'username or password incorect';
           result.statusCode = 404;
           return result;
         }
-        const comparePassword = await this._bcrypt.compareSync(userdata.password, user.password);
+        const comparePassword = await this._bcrypt.compareSync(userData.password, user.password);
     
         if (comparePassword === null) {
           result.reason = 'username and password incorrect';
@@ -65,14 +66,15 @@ class AuthUseCase {
           msisdn: user.msisdn,
           name: user.name,
           username: user.username,
-          created_at: user.created_at,
-          updated_at: user.updated_at,
+          created_at: user.createdAt,
+          updated_at: user.updatedAt,
         };
         const tokenManager = await this._tokenManager.generateToken(userObj);
     
         result.isSuccess = true;
         result.statusCode = 200;
-        result.data = {userObj, tokenManager};
+        result.data = userObj;
+        result.token = tokenManager;
     
         return result;
       }
