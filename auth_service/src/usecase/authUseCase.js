@@ -10,7 +10,6 @@ class AuthUseCase {
       reason: "",
       statusCode: 400,
       data: null,
-      token: null,
     };
 
     if (userData.password !== userData.confirmPassword) {
@@ -61,11 +60,10 @@ class AuthUseCase {
       updated_at: newUser.updatedAt,
     };
     const tokenManager = await this._tokenManager.generateToken(userObj);
-
+    userObj.token = tokenManager;
     result.isSuccess = true;
     result.statusCode = 200;
     result.data = userObj;
-    result.token = tokenManager;
     return result;
   }
 
@@ -75,7 +73,6 @@ class AuthUseCase {
       statusCode: 404,
       reason: null,
       data: null,
-      token: null,
     };
     const user = await this._userRepository.getUserByUsernameOrMsisdn(
       userData.username_or_msisdn
@@ -98,19 +95,39 @@ class AuthUseCase {
 
     const userObj = {
       id: user.id,
-      msisdn: user.msisdn,
-      name: user.name,
-      username: user.username,
-      created_at: user.createdAt,
-      updated_at: user.updatedAt,
     };
     const tokenManager = await this._tokenManager.generateToken(userObj);
+    userObj.token = tokenManager;
 
     result.isSuccess = true;
     result.statusCode = 200;
     result.data = userObj;
-    result.token = tokenManager;
 
+    return result;
+  }
+
+  async verifyToken(id) {
+    let result = {
+      isSuccess: false,
+      reason: "",
+      statusCode: 400,
+      data: null,
+      token: null,
+    };
+
+    const user = await this._userRepository.getById(id);
+    if (user === null) {
+      result.reason = "token invalid";
+      return result;
+    }
+
+    const privateKey = {
+      result: user.id,
+    };
+
+    result.isSuccess = true;
+    result.statusCode = 200;
+    result.data = privateKey;
     return result;
   }
 }

@@ -19,6 +19,15 @@ class UserRepository {
     const result = await this._UserModel.create(user);
     return result
   }
+
+  async getById(id) {
+    const result = await this._UserModel.findOne({
+      where : {
+        id
+      }
+    })
+    return result;
+  }
 }
 
 module.exports = UserRepository;

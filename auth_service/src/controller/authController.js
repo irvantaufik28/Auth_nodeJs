@@ -20,12 +20,7 @@ module.exports = {
         return res.status(result.statusCode).json(resData.failed(result.reason));
       }
 
-      res.status(result.statusCode).json({
-        status : "OK",
-        message: "success",
-        data: result.data,
-        token: result.token
-      });
+      res.status(result.statusCode).json(resData.success(result.data));
     } catch (error) {
       next(error);
     }
@@ -47,12 +42,23 @@ module.exports = {
         return res.status(result.statusCode).json(resData.failed(result.reason));
       }
 
-      res.status(result.statusCode).json({
-        status : "OK",
-        message: "success",
-        data: result.data,
-        token: result.token
-      });
+      res.status(result.statusCode).json(resData.success(result.data));
+    } catch (error) {
+      next(error);
+    }
+  },
+
+  verfyToken: async (req, res, next) => {
+    try {
+      const { id } = req.user
+
+      const result = await req.authUC.verifyToken(id);
+
+      if (!result.isSuccess) {
+        return res.status(result.statusCode).json(resData.failed(result.reason));
+      }
+
+      res.status(result.statusCode).json(resData.success(result.data));
     } catch (error) {
       next(error);
     }
