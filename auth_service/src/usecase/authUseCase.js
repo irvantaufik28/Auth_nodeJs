@@ -116,11 +116,6 @@ class AuthUseCase {
     };
 
     const user = await this._userRepository.getById(id);
-    if (user === null) {
-      result.reason = "token invalid";
-      return result;
-    }
-
     const privateKey = {
       result: user.id,
     };
