@@ -3,6 +3,9 @@ const resData = require("../helper/response");
 module.exports = {
   createLogistic: async (req, res, next) => {
     try {
+      /*
+      #swagger.tags = ['Logistic']
+    */
       const logistic = {
         logistic_name: req.body.logistic_name,
         amount: req.body.amount,
@@ -26,6 +29,9 @@ module.exports = {
   },
 
   getAllLogistc: async (req, res, next) => {
+     /*
+      #swagger.tags = ['Logistic']
+    */
     try {
       const { origin_name } = req.query;
       const { destination_name } = req.query;
@@ -42,6 +48,9 @@ module.exports = {
   },
 
   getLogisticById: async (req, res, next) => {
+     /*
+      #swagger.tags = ['Logistic']
+    */
     try {
       const { id } = req.params;
 
@@ -60,6 +69,9 @@ module.exports = {
   },
 
   deleteLogistic: async (req, res, next) => {
+     /*
+      #swagger.tags = ['Logistic']
+    */
     try {
       const { id } = req.params;
 
@@ -78,6 +90,9 @@ module.exports = {
   },
 
   updateLogistic: async (req, res, next) => {
+     /*
+      #swagger.tags = ['Logistic']
+    */
     try {
       const { id } = req.params;
 

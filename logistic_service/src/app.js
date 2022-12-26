@@ -2,6 +2,7 @@ require("dotenv").config();
 
 const express = require("express");
 const cors = require("cors");
+const swaggerUi = require('swagger-ui-express');
 const serverError = require("./middlerware/serverError")
 
 const LogisticRepository = require('./repository/logisticRepository')
@@ -22,5 +23,10 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use("/api/v1", logisticRouter);
 app.use(serverError);
-
+const swaggerDocument = require('./docs/docs.json');
+app.use(
+  '/docs',
+  swaggerUi.serveFiles(swaggerDocument),
+  swaggerUi.setup(swaggerDocument),
+);
 module.exports = app;
