@@ -13,7 +13,7 @@ class logisticUsecase {
 
     const strLogisticData = {
       logistic_name: logisticData.logistic_name,
-      destination_name: logisticData.logistic_name,
+      destination_name: logisticData.destination_name,
       origin_name: logisticData.origin_name,
     };
     let upperCased_logisticData = {};
@@ -35,7 +35,7 @@ class logisticUsecase {
     return result;
   }
 
-  async getAllLogistc() {
+  async getAllLogistc(origin_name, destination_name) {
     let result = {
       isSuccess: false,
       statusCode: null,
@@ -43,7 +43,10 @@ class logisticUsecase {
       data: [],
     };
 
-    const logistics = await this._logisticRepository.getAll();
+    const logistics = await this._logisticRepository.getAll(
+      origin_name.toUpperCase(),
+      destination_name.toUpperCase()
+    );
 
     result.isSuccess = true;
     result.statusCode = 200;
@@ -92,18 +95,17 @@ class logisticUsecase {
     }
 
     const strLogisticData = {
-        logistic_name: logisticData.logistic_name,
-        destination_name: logisticData.destination_name,
-        origin_name: logisticData.origin_name,
-      };
-      let upperCased_logisticData = {};
-  
-      for (let key in strLogisticData) {
-        upperCased_logisticData[key] = strLogisticData[key].toUpperCase();
-      }
-      upperCased_logisticData.amount = logisticData.amount;
-      upperCased_logisticData.duration = logisticData.duration;
-  
+      logistic_name: logisticData.logistic_name,
+      destination_name: logisticData.destination_name,
+      origin_name: logisticData.origin_name,
+    };
+    let upperCased_logisticData = {};
+
+    for (let key in strLogisticData) {
+      upperCased_logisticData[key] = strLogisticData[key].toUpperCase();
+    }
+    upperCased_logisticData.amount = logisticData.amount;
+    upperCased_logisticData.duration = logisticData.duration;
 
     await this._logisticRepository.update(upperCased_logisticData, id);
 

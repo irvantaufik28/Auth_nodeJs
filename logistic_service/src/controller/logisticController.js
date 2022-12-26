@@ -27,7 +27,13 @@ module.exports = {
 
   getAllLogistc: async (req, res, next) => {
     try {
-      const result = await req.logisticUC.getAllLogistc();
+      const { origin_name } = req.query;
+      const { destination_name } = req.query;
+
+      const result = await req.logisticUC.getAllLogistc(
+        origin_name,
+        destination_name
+      );
 
       return res.status(result.statusCode).json(resData.success(result.data));
     } catch (error) {

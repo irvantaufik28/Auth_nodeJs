@@ -1,12 +1,15 @@
 const { Logistic } = require("../models");
+const { Op } = require("sequelize");
 
 class LogisticRepository {
   constructor() {
     this._LogisticRepository = Logistic;
   }
 
-  async getAll() {
-    const result = await this._LogisticRepository.findAll();
+  async getAll(origin_name, destination_name) {
+    const result = await this._LogisticRepository.findAll({
+      where: { origin_name, destination_name },
+    });
     return result;
   }
 
