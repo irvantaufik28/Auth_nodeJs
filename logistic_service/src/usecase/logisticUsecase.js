@@ -3,7 +3,7 @@ class logisticUsecase {
     this._logisticRepository = logisticRepository;
   }
 
-  async createLogitic(logisticData) {
+  async createLogistic(logisticData) {
     let result = {
       isSuccess: false,
       statusCode: null,
@@ -67,7 +67,7 @@ class logisticUsecase {
     return result;
   }
 
-  async UpdateLogistic(logisticData, id) {
+  async updateLogistic(logisticData, id) {
     let result = {
       isSuccess: false,
       statusCode: null,
