@@ -16,7 +16,7 @@ class LogisticRepository {
     });
     return result;
   }
-  
+
   async create(logistic) {
     const result = await this._LogisticRepository.create(logistic);
     return result;
@@ -31,7 +31,7 @@ class LogisticRepository {
     return result;
   }
 
-  async delete(di) {
+  async delete(id) {
     const result = await this._LogisticRepository.delete({
       where: {
         id,
