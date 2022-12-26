@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "Lolipad AUTH",
+    "title": "Lolipad Test",
     "description": "API Lolipad",
     "termsOfService": "http://swagger.io/terms/",
     "contact": {
@@ -18,7 +18,7 @@
     "/register": {
       "post": {
         "tags": [
-          "Register"
+          "Auth"
         ],
         "description": "",
         "parameters": [],
@@ -37,7 +37,7 @@
                     "example": "082315156668"
                   },
                   "name": {
-                    "example": "Irvan Taufik"
+                    "example": "irvan taufik"
                   },
                   "username": {
                     "example": "irvantaufik28"
@@ -58,8 +58,8 @@
     "/login": {
       "post": {
         "tags": [
-            "Login"
-          ],
+          "Auth"
+        ],
         "description": "",
         "parameters": [],
         "responses": {},
@@ -80,6 +80,36 @@
             }
           }
         }
+      }
+    },
+    "/verify-token": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "description": "",
+        "parameters": [
+          
+        ],
+        "responses": {
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
       }
     }
   }

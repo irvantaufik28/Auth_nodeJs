@@ -13,6 +13,13 @@ const doc = {
   },
   host: 'localhost:3000',
   schemes: ['http'],
+  securityDefinitions: {
+    bearerAuth: {
+      type: 'http',
+      scheme: 'bearer',
+      bearerFormat: 'JWT',
+    },
+  }
 
 };
 

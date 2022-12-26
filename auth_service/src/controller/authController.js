@@ -30,6 +30,9 @@ module.exports = {
     */
 
   login: async (req, res, next) => {
+    /*
+      #swagger.tags = ['Auth']
+    */
     try {
       const user = {
         username_or_msisdn: req.body.username_or_msisdn,
@@ -49,6 +52,9 @@ module.exports = {
   },
 
   verfyToken: async (req, res, next) => {
+    /*
+      #swagger.tags = ['Auth']
+    */
     try {
       const { id } = req.user
 
