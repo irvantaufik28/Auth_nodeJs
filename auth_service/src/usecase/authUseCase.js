@@ -47,11 +47,23 @@ class AuthUseCase {
 
         userData.msisdn = newMsisdn
        
-        let userRegister = await this._userRepository.createUser(userData);
+        const newUser = await this._userRepository.createUser(userData);
+        const userObj = {
+          id: newUser.id,
+          msisdn: newUser.msisdn,
+          name: newUser.name,
+          username: newUser.username,
+          created_at: newUser.createdAt,
+          updated_at: newUser.updatedAt,
+        };
+        const tokenManager = await this._tokenManager.generateToken(userObj);
+          
+       
 
         result.isSuccess = true;
         result.statusCode = 200;
-        result.data = userRegister
+        result.data = userObj;
+        result.token = tokenManager;
         return result;
       }
 
