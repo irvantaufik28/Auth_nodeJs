@@ -1,0 +1,86 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Lolipad AUTH",
+    "description": "API Lolipad",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "email": "irvantaufik28@gmail.com"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/"
+    }
+  ],
+  "paths": {
+    "/register": {
+      "post": {
+        "tags": [
+          "Register"
+        ],
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "msisdn": {
+                    "example": "082315156668"
+                  },
+                  "name": {
+                    "example": "Irvan Taufik"
+                  },
+                  "username": {
+                    "example": "irvantaufik28"
+                  },
+                  "password": {
+                    "example": "inipassword"
+                  },
+                  "confirmPassword": {
+                    "example": "inipassword"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "tags": [
+            "Login"
+          ],
+        "description": "",
+        "parameters": [],
+        "responses": {},
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username_or_msisdn": {
+                    "example": "irvantaufik28"
+                  },
+                  "password": {
+                    "example": "inipassword"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

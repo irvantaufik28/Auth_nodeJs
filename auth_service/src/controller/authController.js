@@ -2,6 +2,9 @@ const resData = require('../helper/response');
 
 module.exports = {
   register: async (req, res, next) => {
+    /*
+      #swagger.tags = ['Auth']
+    */
     try {
       const user = {
         msisdn: req.body.msisdn,
@@ -27,6 +30,9 @@ module.exports = {
       next(error);
     }
   }, 
+  /*
+      #swagger.tags = ['Auth']
+    */
 
   login: async (req, res, next) => {
     try {
