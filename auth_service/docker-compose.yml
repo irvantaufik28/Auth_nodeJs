@@ -1,0 +1,43 @@
+version: '3.4'
+services:
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_PASSWORD: admin
+    ports:
+      - '5431:5432'
+    expose:
+      - '5432'
+    networks:
+    - lolipad
+
+  auth:
+    build: 
+      context: .
+    depends_on:
+      - postgres
+    environment: 
+      APP_NAME: auth_service
+      VERSION: 1.0.0
+      PORT: 3000
+      HOST: 0.0.0.0
+      DB_USERNAME: postgres
+      DB_PASSWORD: admin
+      DB_HOSTNAME: postgres
+      DB_PORT: 5432
+      DB_NAME: auth_service
+      DB_DIALECT: postgres
+      ACCESS_TOKEN_KEY: d0aa9c33de488cfc8ed3f9fce5c3b264bf965279d023ee10a9d93b5369c9ecd4cd5ed2cb89fd7cae380e4f8c16ff32d0a2e96b925414ee8cb03e01281710413f
+      ACCESS_TOKEN_AGE: 1h
+      HOST_ORIGIN: localhost
+    ports:
+      - '3000:3000'
+    expose:
+      - '3000'
+    networks:
+    - lolipad
+    
+
+networks:
+  lolipad:
+    driver: bridge
