@@ -32,7 +32,7 @@ class LogisticRepository {
   }
 
   async delete(id) {
-    const result = await this._LogisticRepository.delete({
+    const result = await this._LogisticRepository.destroy({
       where: {
         id,
       },

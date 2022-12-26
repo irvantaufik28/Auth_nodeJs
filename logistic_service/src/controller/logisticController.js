@@ -83,7 +83,7 @@ module.exports = {
         duration: req.body.duration,
       };
 
-      const result = await req.logisticUC.updateLogistic(id, logistic);
+      const result = await req.logisticUC.updateLogistic(logistic, id);
 
       if (!result.isSuccess) {
         return res
