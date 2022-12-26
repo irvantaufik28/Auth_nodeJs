@@ -30,6 +30,23 @@ class AuthUseCase {
         }
 
         userData.password = this._bcrypt.hashSync(userData.password, 10);
+
+        let newMsisdn = ''
+        let msisdnValue = userData.msisdn.split('')
+        if (msisdnValue[0] === "0") {
+          let msidnSplit = userData.msisdn.split('')
+          msidnSplit.splice(0,1, "62")
+          newMsisdn = msidnSplit.join('')
+        } else if (msisdnValue[0] !== "6" && msisdnValue[1] !== "2" ) {
+          let msidnSplit = userData.msisdn.split('')
+          msidnSplit.splice(0,0, "62")
+          newMsisdn = msidnSplit.join('')
+        } else {
+          newMsisdn = userData.msisdn
+        }
+
+        userData.msisdn = newMsisdn
+       
         let userRegister = await this._userRepository.createUser(userData);
 
         result.isSuccess = true;

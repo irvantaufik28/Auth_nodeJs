@@ -5,6 +5,7 @@ const UserPayloadSchema = Joi.object({
   username: Joi.string().min(6).max(30).required(),
   msisdn: Joi.string()
     .regex(/^[0-9]*$/)
+    .max(13)
     .required(),
     password: Joi.string().min(6).required(),
     confirmPassword: Joi.string().min(6),
