@@ -5,12 +5,12 @@ const cors = require("cors");
 const bcrypt = require("bcrypt");
 const tokenManager = require("./helper/tokenManger");
 const swaggerUi = require('swagger-ui-express');
+const func = require('./libs/function')
 const serverError = require("./middlerware/serverError");
-
 const UserRepository = require("./repository/userRepository");
 const AuthUseCase = require("./usecase/authUseCase");
 
-const authUC = new AuthUseCase(new UserRepository(), bcrypt, tokenManager);
+const authUC = new AuthUseCase(new UserRepository(), bcrypt, tokenManager, func);
 
 const authRouter = require("./routes/authRoutes");
 
