@@ -1,4 +1,5 @@
 'use strict';
+const { v4: uuidv4 } = require("uuid")
 const {
   Model
 } = require('sequelize');
@@ -17,10 +18,16 @@ module.exports = (sequelize, DataTypes) => {
     msisdn: DataTypes.STRING,
     name: DataTypes.STRING,
     username: DataTypes.STRING,
-    password: DataTypes.STRING
+    password: DataTypes.STRING,
   }, {
     sequelize,
-    modelName: 'User',
+    modelName: 'User', 
+    tableName: "Users",
+    underscored: true
+  }
+  );
+  User.addHook("beforeCreate", async (user, options) => {
+    user.id = uuidv4();
   });
   return User;
 };

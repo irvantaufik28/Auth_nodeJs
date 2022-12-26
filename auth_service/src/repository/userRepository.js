@@ -14,6 +14,11 @@ class UserRepository {
     });
     return result;
   }
+
+  async createUser(user) {
+    const result = await this._UserModel.create(user);
+    return result
+  }
 }
 
 module.exports = UserRepository;

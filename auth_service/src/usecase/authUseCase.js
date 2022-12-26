@@ -18,6 +18,7 @@ class AuthUseCase {
           return result;
         }
         const verifyUsername = await this._userRepository.getUserByUsernameOrMsisdn(userData.username)
+      
         const verifyMsisdn = await this._userRepository.getUserByUsernameOrMsisdn(userData.msisdn)
         if (verifyUsername !== null) {
           result.reason = "username is existing";
@@ -29,9 +30,8 @@ class AuthUseCase {
         }
 
         userData.password = this.bcrypt.hashSync(userData.password, 10);
-        let userRegister = await this.authRepo.register(userData);
-
-
+        let userRegister = await this._userRepository.createUser(userData);
+        
         result.isSuccess = true;
         result.statusCode = 200;
         result.data = userRegister
