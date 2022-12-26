@@ -1,11 +1,11 @@
-const jwt = require('jsonwebtoken');
-const resData = require('../../helper/response');
+const resData = require("../../helper/response");
+const axios = require("axios");
 
 function getToken(authHeader) {
   let splitHeader;
 
   try {
-    splitHeader = authHeader.split(' ');
+    splitHeader = authHeader.split(" ");
   } catch (error) {
     console.log(error);
     return null;
@@ -18,34 +18,39 @@ function getToken(authHeader) {
   return splitHeader[0];
 }
 
-const authorized = (req, res, next) => {
-     /*
-  #swagger.security = [{
-    "bearerAuth": []
-  }]
-  */
+const authorized = async (req, res, next) => {
+  /*
+#swagger.security = [{
+ "bearerAuth": []
+}]
+*/
   const { authorization } = req.headers;
 
-  if (authorization !== undefined && typeof authorization !== 'string') {
+  if (authorization !== undefined && typeof authorization !== "string") {
     return null;
   }
 
-  let token = getToken(authorization);
-
-  let payload;
   try {
-    payload = jwt.verify(token, process.env.ACCESS_TOKEN_KEY);
+    const token = getToken(authorization);
+
+    const { data } = await axios({
+      method: "post",
+      url: process.env.API_AUTH_URL + "/verify-token",
+      headers: {
+        Authorization: token,
+      },
+    });
+
+    req.user = {
+      id: data.id,
+      msisdn: data.msisdn,
+      name: data.name,
+      username: data.username,
+    };
   } catch (error) {
     console.log(error);
-    return res.status(401).json(resData.failed('unauthorized'));
+    return res.status(401).json(resData.failed("unauthorized"));
   }
-
-  req.user = {
-    id: payload.id,
-    msisdn: payload. msisdn,
-    name: payload.name,
-    username: payload.username
-  };
 
   next();
 };
