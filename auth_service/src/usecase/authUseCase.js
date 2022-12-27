@@ -47,8 +47,7 @@ class AuthUseCase {
       created_at: newUser.createdAt,
       updated_at: newUser.updatedAt,
     };
-    const tokenManager = await this._tokenManager.generateToken(userObj);
-    userObj.token = tokenManager;
+
     result.isSuccess = true;
     result.statusCode = 200;
     result.data = userObj;
