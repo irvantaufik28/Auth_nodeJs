@@ -30,7 +30,7 @@ const doc = {
 
 const outputFile = './docs/docs.json';
 const endpointsFiles = [
-  './routes/logisticRoutes.js',
+  './routes/courierRateRoutes.js',
 ];
 
 /* NOTE: if you use the express Router, you must pass in the

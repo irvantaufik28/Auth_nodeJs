@@ -11,15 +11,28 @@
   },
   "servers": [
     {
-      "url": "http://localhost:3030/api/v1"
+      "url": "http://localhost:3030/api/v1/"
     }
   ],
   "paths": {
-    "/logistic": {
+    "/courier-rate": {
       "get": {
-        "tags": [
-          "Logistic"
-        ],
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/courier-rate-by-origin-dest": {
+      "get": {
         "description": "",
         "parameters": [
           {
@@ -47,67 +60,20 @@
             "bearerAuth": []
           }
         ]
-      },
-      "post": {
-        "tags": [
-          "Logistic"
-        ],
-        "description": "",
-        "parameters": [
-        ],
-        "responses": {
-          "401": {
-            "description": "Unauthorized"
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "logistic_name": {
-                    "example": "J&T"
-                  },
-                  "amount": {
-                    "example": "8000"
-                  },
-                  "destination_name": {
-                    "example": "BANDUNG"
-                  },
-                  "origin_name": {
-                    "example": "Garut"
-                  },
-                  "duration": {
-                    "example": "1-2"
-                  }
-                }
-              }
-            }
-          }
-        }
       }
     },
-    "/logistic/{id}": {
+    "/courier-rate/{id}": {
       "get": {
-        "tags": [
-          "Logistic"
-        ],
         "description": "",
         "parameters": [
-            {
-                "name": "id",
-                "in": "path",
-                "required": true,
-                "schema": {
-                  "type": "string"
-                }
-              }
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
         ],
         "responses": {
           "401": {
@@ -121,9 +87,6 @@
         ]
       },
       "put": {
-        "tags": [
-          "Logistic"
-        ],
         "description": "",
         "parameters": [
           {
@@ -173,9 +136,6 @@
         }
       },
       "delete": {
-        "tags": [
-          "Logistic"
-        ],
         "description": "",
         "parameters": [
           {
@@ -197,6 +157,48 @@
             "bearerAuth": []
           }
         ]
+      }
+    },
+    "/courier-rate/": {
+      "post": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "logistic_name": {
+                    "example": "J&T"
+                  },
+                  "amount": {
+                    "example": "8000"
+                  },
+                  "destination_name": {
+                    "example": "BANDUNG"
+                  },
+                  "origin_name": {
+                    "example": "Garut"
+                  },
+                  "duration": {
+                    "example": "1-2"
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   },

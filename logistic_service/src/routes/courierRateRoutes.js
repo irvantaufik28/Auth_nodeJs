@@ -7,7 +7,7 @@ const router = express.Router();
 router.get('/courier-rate', authorized, courierRateController.getAllCourierRate);
 router.get('/courier-rate-by-origin-dest', authorized, courierRateController.getCourierRatesByOriginDestination);
 router.get('/courier-rate/:id',authorized, courierRateController.getCourierRateById);
-router.post('/courier-rate',authorized,courierRateController.createCourierRate);
+router.post('/courier-rate/',authorized,courierRateController.createCourierRate);
 router.put('/courier-rate/:id',authorized, courierRateController.updateCourierRate);
 router.delete('/courier-rate/:id',authorized, courierRateController.deleteCourierRate);
 
