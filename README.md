@@ -21,10 +21,13 @@ Installation project - manual
 
 - testing all endpoint
 
+### Run Unit Test Jest
+-npm run test
+
 
 ### Installation project with docker
 
-- docker-compose up -t
+- docker-compose up
 - open terminal container auth_serivce & logistic_service in docker
 - create db `sequelize db:create`
 - migrate table `sequelize db:migrate`
