@@ -16,7 +16,7 @@ Installation project - manual
 ### auth service
 - enter swagger : `localhost:3000/docs` 
 - testing all endpoint
-### auth logistic
+### logistic
 - enter swagger : `localhost:3030/docs` 
 
 - testing all endpoint
