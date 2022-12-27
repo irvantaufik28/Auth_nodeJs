@@ -35,7 +35,7 @@ const authorized = async (req, res, next) => {
 
     const { data } = await axios({
       method: "post",
-      url: process.env.API_AUTH_URL + "/verify-token",
+      url:"http://localhost:3000" + "/verify-token",
       headers: {
         Authorization: token,
       },

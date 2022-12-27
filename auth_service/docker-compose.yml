@@ -5,9 +5,9 @@ services:
     environment:
       POSTGRES_PASSWORD: admin
     ports:
-      - '5433:5433'
+      - '5431:5432'
     expose:
-      - '5433'
+      - '5432'
     networks:
     - lolipad
 
@@ -24,7 +24,7 @@ services:
       DB_USERNAME: postgres
       DB_PASSWORD: admin
       DB_HOSTNAME: postgres
-      DB_PORT: 5433
+      DB_PORT: 5432
       DB_NAME: auth_service
       DB_DIALECT: postgres
       ACCESS_TOKEN_KEY: d0aa9c33de488cfc8ed3f9fce5c3b264bf965279d023ee10a9d93b5369c9ecd4cd5ed2cb89fd7cae380e4f8c16ff32d0a2e96b925414ee8cb03e01281710413f

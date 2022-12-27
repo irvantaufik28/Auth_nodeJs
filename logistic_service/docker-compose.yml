@@ -5,9 +5,9 @@ services:
     environment:
       POSTGRES_PASSWORD: admin
     ports:
-      - '5431:5431'
+      - '5433:5432'
     expose:
-      - '5431'
+      - '5432'
     networks:
     - lolipad2
 
@@ -24,7 +24,7 @@ services:
       DB_USERNAME: postgres
       DB_PASSWORD: admin
       DB_HOSTNAME: postgres
-      DB_PORT: 5431
+      DB_PORT: 5432
       DB_NAME: logistic_service
       DB_DIALECT: postgres
       HOST_ORIGIN: localhost
