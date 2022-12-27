@@ -25,15 +25,6 @@ Installation project - manual
 -npm run test
 
 
-### Installation project with docker
-
-- docker-compose up
-- open terminal container auth_serivce & logistic_service in docker
-- create db `sequelize db:create`
-- migrate table `sequelize db:migrate`
-- fill the table with dummy data `sequelize db:seed:all`
-- open app in browser `localhost:3000/docs` & `localhost:3030/docs` 
-
 
 ### Built with
 - Node JS
