@@ -24,7 +24,7 @@ services:
       DB_USERNAME: postgres
       DB_PASSWORD: admin
       DB_HOSTNAME: postgres
-      DB_PORT: 543
+      DB_PORT: 5432
       DB_NAME: logistic_service
       DB_DIALECT: postgres
       HOST_ORIGIN: localhost
