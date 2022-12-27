@@ -20,11 +20,11 @@ services:
       APP_NAME: logistic_service
       VERSION: 1.0.0
       PORT: 3030
-      HOST: localhost
+      HOST: 0.0.0.0
       DB_USERNAME: postgres
       DB_PASSWORD: admin
       DB_HOSTNAME: postgres
-      DB_PORT: 5431
+      DB_PORT: 543
       DB_NAME: logistic_service
       DB_DIALECT: postgres
       HOST_ORIGIN: localhost
